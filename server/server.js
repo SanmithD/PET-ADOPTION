@@ -13,7 +13,12 @@ import userRouter from './routes/user.route.js';
 
 connectDB();
 const app = express();
-app.use(cors({ origin: '*' }));
+app.use(cors({
+    origin: ["https://pet-adoption-client-six.vercel.app"],
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true
+  }));
+  
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 7000
 
