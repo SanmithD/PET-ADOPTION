@@ -16,10 +16,11 @@ function ManageRequest() {
   const [requests, setRequests] = useState([]);
   const [status, setStatus] = useState(false);
   const [rejected, setRejected] = useState(false);
+  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
   const allAdoptionRequest = async () => {
     try {
-      const response = await axios.get('http://localhost:7000/api/adoption/getAllRequest');
+      const response = await axios.get(`${VITE_API_BASE_URL}/adoption/getAllRequest`);
       setRequests(response.data.response || []);
     } catch (error) {
       console.log(error);
@@ -34,7 +35,7 @@ function ManageRequest() {
 
   const handleReject = async(id) => {
     try {
-      const response = await axios.delete(`http://localhost:7000/api/adoption/rejectRequest/${id}`);
+      const response = await axios.delete(`${VITE_API_BASE_URL}/adoption/rejectRequest/${id}`);
       allAdoptionRequest();
     } catch (error) {
       console.log(error);

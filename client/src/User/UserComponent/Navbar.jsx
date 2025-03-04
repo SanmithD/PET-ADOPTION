@@ -31,6 +31,7 @@ export default function Navbar() {
   const [notificationsAnchorEl, setNotificationsAnchorEl] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [notiLength, setNotiLength] = useState(0);
+  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -48,7 +49,7 @@ export default function Navbar() {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get('http://localhost:7000/api/notification/getAllNotification');
+        const response = await axios.get(`${VITE_API_BASE_URL}/notification/getAllNotification`);
         const data = response.data.response || [];
         setNotifications(data);
         setNotiLength(data.length);

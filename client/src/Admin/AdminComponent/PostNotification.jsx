@@ -23,6 +23,7 @@ function PostNotification() {
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
   const { id } = useParams();
+  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
   // Form validation state
   const [validation, setValidation] = useState({
@@ -45,7 +46,7 @@ function PostNotification() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:7000/api/notification/getByIdNotification/${id}`
+        `${VITE_API_BASE_URL}/notification/getByIdNotification/${id}`
       );
       const data = response.data?.response || {};
       setNotification({
@@ -77,7 +78,7 @@ function PostNotification() {
     setLoading(true);
     try {
       await axios.put(
-        `http://localhost:7000/api/notification/updateNotification/${id}`,
+        `${VITE_API_BASE_URL}/notification/updateNotification/${id}`,
         notification
       );
       setSuccess('Notification updated successfully');
@@ -98,7 +99,7 @@ function PostNotification() {
     }
     setLoading(true);
     try {
-      await axios.post('http://localhost:7000/api/notification/postNotification', notification);
+      await axios.post(`${VITE_API_BASE_URL}/notification/postNotification`, notification);
       setSuccess('Notification published successfully');
       setNotification({ title: '', message: '' });
     } catch (error) {

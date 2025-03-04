@@ -30,12 +30,13 @@ function Profile() {
   const [error, setError] = useState(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const navigate = useNavigate();
+  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Fetch user profile
   const userProfile = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:7000/api/user/getUserById', {
+      const response = await axios.get(`${VITE_API_BASE_URL}/user/getUserById`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setData(response.data.user || {});
@@ -72,7 +73,7 @@ function Profile() {
       formData.append('email', data.email);
       if (selectedImage) formData.append('profileImage', selectedImage);
 
-      await axios.put('http://localhost:7000/api/user/updateUser', formData, {
+      await axios.put(`${VITE_API_BASE_URL}/user/updateUser`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
@@ -95,7 +96,7 @@ function Profile() {
     try {
       setLoading(true);
       setError(null);
-      await axios.delete('http://localhost:7000/api/user/deleteUser', {
+      await axios.delete(`${VITE_API_BASE_URL}/user/deleteUser`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       localStorage.removeItem('token');

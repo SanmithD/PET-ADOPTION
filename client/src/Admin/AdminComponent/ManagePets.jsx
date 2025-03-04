@@ -1,17 +1,17 @@
 import {
-    Alert,
-    Box,
-    Button,
-    CircularProgress,
-    Container,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    Paper,
-    Stack,
-    TextField,
-    Typography,
+  Alert,
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
@@ -42,11 +42,12 @@ import React, { useEffect, useState } from 'react';
       petNumber: '',
       petImage: null,
     });
+    const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   
     const getAllPets = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:7000/api/pet/getAllPet');
+        const response = await axios.get(`${VITE_API_BASE_URL}/pet/getAllPet`);
         setPetsData(response.data.response || []);
         setError(null);
       } catch (err) {
@@ -77,7 +78,7 @@ import React, { useEffect, useState } from 'react';
       }
   
       try {
-        await axios.post('http://localhost:7000/api/pet/postPet', formData, {
+        await axios.post(`${VITE_API_BASE_URL}/pet/postPet`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -116,7 +117,7 @@ import React, { useEffect, useState } from 'react';
     //   }
   
       try {
-        await axios.put(`http://localhost:7000/api/pet/updatePet/${editPet._id}`, formData, {
+        await axios.put(`${VITE_API_BASE_URL}/pet/updatePet/${editPet._id}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -137,7 +138,7 @@ import React, { useEffect, useState } from 'react';
       setError(null);
   
       try {
-        await axios.delete(`http://localhost:7000/api/pet/deletePet/${id}`, {
+        await axios.delete(`${VITE_API_BASE_URL}/pet/deletePet/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

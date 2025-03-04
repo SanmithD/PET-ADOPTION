@@ -12,6 +12,7 @@ function Adopt() {
         address: ''
     });
     const [alert, setAlter] = useState(false);
+    const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
     const adoptionText = `Pet adoption is a life-changing decision that brings immense joy while saving animal lives. 
     By choosing adoption, you're giving a second chance to animals who have often survived abandonment, neglect, 
@@ -33,7 +34,7 @@ function Adopt() {
     const handleRequest = async(e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:7000/api/adoption/makeRequest', petForm,{
+            const response = await axios.post(`${VITE_API_BASE_URL}/adoption/makeRequest`, petForm,{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

@@ -41,11 +41,12 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [reply, setReply] = useState('');
+  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const getAllMessages = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:7000/api/contact/getAllMsg');
+      const response = await axios.get(`${VITE_API_BASE_URL}/contact/getAllMsg`);
       setAllMessages(response.data.data || []);
       setError(null);
     } catch (err) {
@@ -59,7 +60,7 @@ const Contact = () => {
   const getSingleMessage = async (messageId) => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:7000/api/contact/messages/${messageId}/replies`);
+      const response = await axios.get(`${VITE_API_BASE_URL}/contact/messages/${messageId}/replies`);
       setSelectedMessage(response.data.data);
       setError(null);
     } catch (err) {
@@ -82,7 +83,7 @@ const Contact = () => {
       }
 
       const response = await axios.post(
-        `http://localhost:7000/api/contact/messages/${selectedMessage._id}/replies`,
+        `${VITE_API_BASE_URL}/contact/messages/${selectedMessage._id}/replies`,
         { message: reply },
         {
           headers: {
@@ -105,7 +106,7 @@ const Contact = () => {
   const handleDelete = async (id) => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:7000/api/contact/deleteMsg/${id}`);
+      await axios.delete(`${VITE_API_BASE_URL}/api/contact/deleteMsg/${id}`);
       await getAllMessages();
       if (selectedMessage?._id === id) setSelectedMessage(null);
     } catch (err) {
@@ -119,7 +120,7 @@ const Contact = () => {
   const handleDeleteReply = async (messageId, replyId) => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:7000/api/contact/messages/${messageId}/replies/${replyId}`);
+      await axios.delete(`${VITE_API_BASE_URL}/contact/messages/${messageId}/replies/${replyId}`);
       await getSingleMessage(messageId);
     } catch (err) {
       setError('Failed to delete reply: ' + (err.response?.data?.message || err.message));

@@ -13,6 +13,7 @@ function Signup() {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
   const handleChange = (e) => {
     if (e.target.name === 'profileImage') {
@@ -40,7 +41,7 @@ function Signup() {
 
     try {
       const response = await axios.post(
-        "http://localhost:7000/api/user/signup",
+        `${VITE_API_BASE_URL}/user/signup`,
         newForm, {
             headers: {
                 'Content-Type' : 'multipart/form-data'

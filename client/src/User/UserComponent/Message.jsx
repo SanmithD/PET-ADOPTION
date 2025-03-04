@@ -45,6 +45,7 @@ function Message() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -73,7 +74,7 @@ function Message() {
 
     try {
       const response = await axios.post(
-        'http://localhost:7000/api/contact/postMessage',
+        `${VITE_API_BASE_URL}/contact/postMessage`,
         formData,
         {
           headers: {
@@ -96,7 +97,7 @@ function Message() {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:7000/api/contact/getOwnMsg',{
+      const response = await axios.get(`${VITE_API_BASE_URL}/contact/getOwnMsg`,{
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

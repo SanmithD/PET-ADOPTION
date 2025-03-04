@@ -1,14 +1,14 @@
 import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardMedia,
-    CircularProgress,
-    Container,
-    Grid,
-    TextField,
-    Typography
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  CircularProgress,
+  Container,
+  Grid,
+  TextField,
+  Typography
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -19,10 +19,11 @@ import { useNavigate } from 'react-router-dom';
     const [petData, setPetData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   
     const getAllPetData = async () => {
       try {
-        const response = await axios.get('http://localhost:7000/api/pet/getAllPet');
+        const response = await axios.get(`${VITE_API_BASE_URL}/pet/getAllPet`);
         const data = Array.isArray(response.data.response) ? response.data.response : [];
         setPetData(data);
       } catch (error) {

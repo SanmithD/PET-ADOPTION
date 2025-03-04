@@ -21,11 +21,12 @@ function ManageNotifications() {
   const [allNotification, setAllNotification] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const getAllNoti = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:7000/api/notification/getAllNotification');
+      const response = await axios.get(`${VITE_API_BASE_URL}/notification/getAllNotification`);
       setAllNotification(response.data.response || []);
     } catch (error) {
       console.log(error);
@@ -36,7 +37,7 @@ function ManageNotifications() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:7000/api/notification/deleteByIdNotification/${id}`);
+      await axios.delete(`${VITE_API_BASE_URL}/notification/deleteByIdNotification/${id}`);
       getAllNoti();
     } catch (error) {
       console.log(error);
@@ -45,7 +46,7 @@ function ManageNotifications() {
 
   const handleDeleteAll = async () => {
     try {
-      await axios.delete(`http://localhost:7000/api/notification/deleteAllNotification`);
+      await axios.delete(`${VITE_API_BASE_URL}/notification/deleteAllNotification`);
       getAllNoti();
     } catch (error) {
       console.log(error);
