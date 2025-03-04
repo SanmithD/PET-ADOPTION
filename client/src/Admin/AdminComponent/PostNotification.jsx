@@ -46,7 +46,7 @@ function PostNotification() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${VITE_API_BASE_URL}/notification/getByIdNotification/${id}`
+        `${VITE_API_BASE_URL}/api/notification/getByIdNotification/${id}`
       );
       const data = response.data?.response || {};
       setNotification({
@@ -78,7 +78,7 @@ function PostNotification() {
     setLoading(true);
     try {
       await axios.put(
-        `${VITE_API_BASE_URL}/notification/updateNotification/${id}`,
+        `${VITE_API_BASE_URL}/api/notification/updateNotification/${id}`,
         notification
       );
       setSuccess('Notification updated successfully');
@@ -99,7 +99,7 @@ function PostNotification() {
     }
     setLoading(true);
     try {
-      await axios.post(`${VITE_API_BASE_URL}/notification/postNotification`, notification);
+      await axios.post(`${VITE_API_BASE_URL}/api/notification/postNotification`, notification);
       setSuccess('Notification published successfully');
       setNotification({ title: '', message: '' });
     } catch (error) {
