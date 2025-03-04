@@ -23,38 +23,40 @@ function Signup() {
     }
   };
 
-  const handleLogin = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-
-    const newForm = new FormData();
-    newForm.append('profileImage', formData.profileImage);
-    newForm.append('name', formData.name);
-    newForm.append('email', formData.email);
-    newForm.append('password', formData.password);
-
-    setError("");
-
+  
     if (!formData.name || !formData.email || !formData.password) {
-      setError("Name, email and password are required.");
+      setError("Name, email, and password are required.");
       return;
     }
-
+  
+    const newForm = new FormData();
+    newForm.append("profileImage", formData.profileImage);
+    newForm.append("name", formData.name);
+    newForm.append("email", formData.email);
+    newForm.append("password", formData.password);
+  
     try {
       const response = await axios.post(
-        `${VITE_API_BASE_URL}/user/signup`,
-        newForm, {
-            headers: {
-                'Content-Type' : 'multipart/form-data'
-            }
+        `${VITE_API_BASE_URL}/api/user/signup`, // Added `/api` prefix
+        newForm,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true, // Ensure cookies are sent
         }
       );
-      setTimeout(()=>{
-        navigate('/login');
-      },2000);
+  
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
-      console.error(error);
+      setError(error.response?.data?.message || "Signup failed.");
     }
   };
+  
 
   return (
     <Container component="main" maxWidth="xs">

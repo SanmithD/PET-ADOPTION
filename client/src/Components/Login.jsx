@@ -19,27 +19,27 @@ function Signup() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     setError("");
-
+  
     if (!formData.email || !formData.password) {
-      setError("Name, email and password are required.");
+      setError("Email and password are required.");
       return;
     }
-
+  
     try {
       const response = await axios.post(
-        `${VITE_API_BASE_URL}/user/login`,
-        formData
+        `${VITE_API_BASE_URL}/api/user/login`,
+        formData,
+        { withCredentials: true } 
       );
-      localStorage.setItem('token', response.data.token);
-      setTimeout(()=>{
-        navigate('/');
-      },2000);
+      
+      localStorage.setItem("token", response.data.token);
+      navigate("/");
     } catch (error) {
-      console.error(error);
+      setError(error.response?.data?.message || "Login failed.");
     }
   };
+  
 
 
   return (
