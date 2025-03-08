@@ -13,7 +13,11 @@ import userRouter from './routes/user.route.js';
 
 connectDB();
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true
+}));
   
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 7000
