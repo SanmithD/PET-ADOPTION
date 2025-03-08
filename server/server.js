@@ -14,7 +14,7 @@ import userRouter from './routes/user.route.js';
 connectDB();
 const app = express();
 app.use(cors({
-    origin: process.env.CLIENT_URL,
+    origin: process.env.CLIENT_URL || "https://pet-adoption-nlfv.vercel.app",
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
 }));
