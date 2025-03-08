@@ -1,5 +1,4 @@
 import bodyParser from 'body-parser';
-import cors from 'cors';
 import 'dotenv/config';
 import express from 'express';
 import connectDB from './db.js';
@@ -13,11 +12,22 @@ import userRouter from './routes/user.route.js';
 
 connectDB();
 const app = express();
-app.use(cors({
-    origin: process.env.CLIENT_URL || "https://pet-adoption-nlfv.vercel.app",
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true
-}));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL || "https://pet-adoption-nlfv.vercel.app");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
+// app.use(cors({
+//     origin: process.env.CLIENT_URL || "https://pet-adoption-nlfv.vercel.app",
+//     methods: ["POST", "GET", "PUT", "DELETE"],
+//     credentials: true
+// }));
   
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 7000
