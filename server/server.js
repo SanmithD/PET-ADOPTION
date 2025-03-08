@@ -23,11 +23,11 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.use(cors({
-//     origin: process.env.CLIENT_URL || "https://pet-adoption-nlfv.vercel.app",
-//     methods: ["POST", "GET", "PUT", "DELETE"],
-//     credentials: true
-// }));
+app.use(cors({
+    origin: process.env.CLIENT_URL || "https://pet-adoption-nlfv.vercel.app",
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true
+}));
   
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 7000
