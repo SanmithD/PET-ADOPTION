@@ -42,12 +42,11 @@ import React, { useEffect, useState } from 'react';
       petNumber: '',
       petImage: null,
     });
-    const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   
     const getAllPets = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${VITE_API_BASE_URL}/pet/getAllPet`);
+        const response = await axios.get(`${import.meta.env.VITE_PORT}/api/pet/getAllPet`);
         setPetsData(response.data.response || []);
         setError(null);
       } catch (err) {
@@ -78,7 +77,7 @@ import React, { useEffect, useState } from 'react';
       }
   
       try {
-        await axios.post(`${VITE_API_BASE_URL}/pet/postPet`, formData, {
+        await axios.post(`${import.meta.env.VITE_PORT}/api/pet/postPet`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -117,7 +116,7 @@ import React, { useEffect, useState } from 'react';
     //   }
   
       try {
-        await axios.put(`${VITE_API_BASE_URL}/pet/updatePet/${editPet._id}`, formData, {
+        await axios.put(`${import.meta.env.VITE_PORT}/api/pet/updatePet/${editPet._id}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -138,7 +137,7 @@ import React, { useEffect, useState } from 'react';
       setError(null);
   
       try {
-        await axios.delete(`${VITE_API_BASE_URL}/pet/deletePet/${id}`, {
+        await axios.delete(`${import.meta.env.VITE_PORT}/api/pet/deletePet/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

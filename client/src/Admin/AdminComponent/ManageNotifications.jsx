@@ -21,12 +21,11 @@ function ManageNotifications() {
   const [allNotification, setAllNotification] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const getAllNoti = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${VITE_API_BASE_URL}/notification/getAllNotification`);
+      const response = await axios.get(`${import.meta.env.VITE_PORT}/api/notification/getAllNotification`);
       setAllNotification(response.data.response || []);
     } catch (error) {
       console.log(error);
@@ -37,7 +36,7 @@ function ManageNotifications() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${VITE_API_BASE_URL}/notification/deleteByIdNotification/${id}`);
+      await axios.delete(`${import.meta.env.VITE_PORT}/api/notification/deleteByIdNotification/${id}`);
       getAllNoti();
     } catch (error) {
       console.log(error);
@@ -46,7 +45,7 @@ function ManageNotifications() {
 
   const handleDeleteAll = async () => {
     try {
-      await axios.delete(`${VITE_API_BASE_URL}/notification/deleteAllNotification`);
+      await axios.delete(`${import.meta.env.VITE_PORT}/api/notification/deleteAllNotification`);
       getAllNoti();
     } catch (error) {
       console.log(error);
@@ -65,8 +64,8 @@ function ManageNotifications() {
     <Container
       maxWidth="lg"
       sx={{
-        py: { xs: 2, sm: 4, md: 6 }, // Responsive padding
-        minHeight: '100vh', // Ensure full height
+        py: { xs: 2, sm: 4, md: 6 }, 
+        minHeight: '100vh',
       }}
     >
       <Box>
@@ -76,9 +75,9 @@ function ManageNotifications() {
           gutterBottom
           sx={{
             fontWeight: 'bold',
-            mb: { xs: 2, sm: 4 }, // Responsive margin
-            fontSize: { xs: '1.75rem', sm: '2.25rem', md: '3rem' }, // Responsive font size
-            textAlign: { xs: 'center', sm: 'left' }, // Center on mobile
+            mb: { xs: 2, sm: 4 },
+            fontSize: { xs: '1.75rem', sm: '2.25rem', md: '3rem' }, 
+            textAlign: { xs: 'center', sm: 'left' }, 
           }}
         >
           Manage Notifications
@@ -86,11 +85,11 @@ function ManageNotifications() {
 
         {/* Action Buttons */}
         <Stack
-          direction={{ xs: 'column', sm: 'row' }} // Stack on mobile, row on desktop
-          spacing={{ xs: 1, sm: 2 }} // Responsive spacing
+          direction={{ xs: 'column', sm: 'row' }} 
+          spacing={{ xs: 1, sm: 2 }}
           sx={{
-            mb: { xs: 2, sm: 4 }, // Margin bottom
-            justifyContent: { xs: 'center', sm: 'flex-end' }, // Center on mobile
+            mb: { xs: 2, sm: 4 }, 
+            justifyContent: { xs: 'center', sm: 'flex-end' }, 
             alignItems: 'center',
           }}
         >
@@ -100,11 +99,11 @@ function ManageNotifications() {
             onClick={() => navigate('/admin/postNotification')}
             startIcon={<PostAddOutlined />}
             sx={{
-              fontSize: { xs: '0.875rem', sm: '1rem' }, // Responsive font size
-              px: { xs: 2, sm: 3 }, // Responsive padding
+              fontSize: { xs: '0.875rem', sm: '1rem' },
+              px: { xs: 2, sm: 3 },
               py: 1,
               textTransform: 'none',
-              minWidth: { xs: '100%', sm: 'auto' }, // Full width on mobile
+              minWidth: { xs: '100%', sm: 'auto' },
             }}
           >
             Add Notification
@@ -115,11 +114,11 @@ function ManageNotifications() {
             onClick={handleDeleteAll}
             startIcon={<Delete />}
             sx={{
-              fontSize: { xs: '0.875rem', sm: '1rem' }, // Responsive font size
-              px: { xs: 2, sm: 3 }, // Responsive padding
+              fontSize: { xs: '0.875rem', sm: '1rem' }, 
+              px: { xs: 2, sm: 3 }, 
               py: 1,
               textTransform: 'none',
-              minWidth: { xs: '100%', sm: 'auto' }, // Full width on mobile
+              minWidth: { xs: '100%', sm: 'auto' }, 
             }}
           >
             Delete All

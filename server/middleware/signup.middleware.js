@@ -10,7 +10,7 @@ const signupMiddleware = (req, res, next) =>{
 
     const { error } = signupSchema.validate(req.body);
     if(error){
-        res.status(400).json({
+        return res.status(400).json({
             success: false,
             message: "Please enter correctly"
         });
@@ -32,7 +32,7 @@ const loginMiddleware = (req, res, next) =>{
 
     const { error } = loginSchema.validate(req.body);
     if(error){
-        res.status(400).json({
+        return res.status(400).json({
             success: false,
             message: "Please enter correctly"
         });
@@ -41,3 +41,4 @@ const loginMiddleware = (req, res, next) =>{
 }
 
 export { loginMiddleware, signupMiddleware };
+

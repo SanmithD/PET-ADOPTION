@@ -11,7 +11,6 @@ function Signup() {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value }); 
@@ -28,9 +27,8 @@ function Signup() {
   
     try {
       const response = await axios.post(
-        `${VITE_API_BASE_URL}/api/user/login`,
+        `${import.meta.env.VITE_PORT}/api/user/login`,
         formData,
-        { withCredentials: true } 
       );
       
       localStorage.setItem("token", response.data.token);

@@ -217,7 +217,6 @@ const getOwnUserMsg = async(req, res) =>{
   try {
     const { id } = jwt.verify(token, JWT);
     const response = await contactModel.find({ "userMsg.userId" : id });
-    console.log(response);
     if(!response){
       return res.status(404).json({
         success: false,

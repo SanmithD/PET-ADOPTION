@@ -9,11 +9,10 @@ function PetDetails() {
   const [petInfo, setPetInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const getPetData = async () => {
     try {
-      const response = await axios.get(`${VITE_API_BASE_URL}/pet/getPetById/${id}`);
+      const response = await axios.get(`${import.meta.env.VITE_PORT}/api/pet/getPetById/${id}`);
       const data = response.data.response ? response.data.response : null;
       setPetInfo(data);
       setLoading(false);

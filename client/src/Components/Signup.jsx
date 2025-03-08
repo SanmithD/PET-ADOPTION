@@ -13,7 +13,6 @@ function Signup() {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
   const handleChange = (e) => {
     if (e.target.name === 'profileImage') {
@@ -39,13 +38,12 @@ function Signup() {
   
     try {
       const response = await axios.post(
-        `${VITE_API_BASE_URL}/api/user/signup`, // Added `/api` prefix
+        `${import.meta.env.VITE_PORT}/api/user/signup`,
         newForm,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-          withCredentials: true, // Ensure cookies are sent
         }
       );
   
@@ -74,7 +72,7 @@ function Signup() {
             Create Account
           </Typography>
 
-          <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSignup} sx={{ mt: 1 }}>
             {error && (
               <Alert severity="error" sx={{ width: '100%', mb: 2 }}>
                 {error}

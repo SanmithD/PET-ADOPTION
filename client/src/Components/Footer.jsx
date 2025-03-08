@@ -23,13 +23,13 @@ function Footer() {
               Helping pets find loving homes since 2023. Join us in creating happy endings for our furry friends.
             </Typography>
             <Box sx={{ mt: 2 }}>
-              <IconButton href="https://facebook.com" target="_blank">
+              <IconButton href="https://www.facebook.com/sanmith.devadiga/" target="_blank">
                 <Facebook />
               </IconButton>
-              <IconButton href="https://instagram.com" target="_blank">
+              <IconButton href="https://www.instagram.com/sanmith_04/" target="_blank">
                 <Instagram />
               </IconButton>
-              <IconButton href="https://twitter.com" target="_blank">
+              <IconButton href="https://x.com/Sanmith82255043" target="_blank">
                 <Twitter />
               </IconButton>
               <IconButton href="/adoptions" sx={{ color: 'secondary.main' }}>

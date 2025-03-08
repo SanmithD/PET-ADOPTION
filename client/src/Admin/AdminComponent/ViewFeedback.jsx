@@ -17,13 +17,12 @@ function ViewFeedback() {
   const [feedback, setFeedback] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
   const getAllFeedbacks = async () => {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.get(`${VITE_API_BASE_URL}/feedback/getAllFeedbacks`);
+      const response = await axios.get(`${import.meta.env.VITE_PORT}/api/feedback/getAllFeedbacks`);
       setFeedback(response.data.response || []);
     } catch (error) {
       setError('Failed to load feedback');
@@ -36,7 +35,7 @@ function ViewFeedback() {
   const handleDelete = async (id) => {
     setLoading(true);
     try {
-      await axios.delete(`${VITE_API_BASE_URL}/feedback/deleteSingleFeedback/${id}`);
+      await axios.delete(`${import.meta.env.VITE_PORT}/api/feedback/deleteSingleFeedback/${id}`);
       setFeedback(feedback.filter((item) => item._id !== id));
       getAllFeedbacks();
     } catch (error) {

@@ -45,7 +45,6 @@ function Message() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -69,12 +68,12 @@ function Message() {
     const formData = new FormData();
     formData.append('message', contactForm.message);
     if (contactForm.contactImage) {
-      formData.append('contactImage', contactImage);
+      formData.append('contactImage', contactForm.contactImage);
     }
 
     try {
       const response = await axios.post(
-        `${VITE_API_BASE_URL}/contact/postMessage`,
+        `${import.meta.env.VITE_PORT}/api/contact/postMessage`,
         formData,
         {
           headers: {
@@ -97,7 +96,7 @@ function Message() {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${VITE_API_BASE_URL}/contact/getOwnMsg`,{
+      const response = await axios.get(`${import.meta.env.VITE_PORT}/api/contact/getOwnMsg`,{
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

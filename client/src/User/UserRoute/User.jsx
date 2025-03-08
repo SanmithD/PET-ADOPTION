@@ -1,5 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Login from '../../Components/Login';
+import ProtectedRoute from '../../Components/ProtectedRoute';
+import Signup from '../../Components/Signup';
 import Adopt from '../UserComponent/Adopt';
 import Blog from '../UserComponent/Blog';
 import Donation from '../UserComponent/Donation';
@@ -28,7 +31,7 @@ function User() {
     <>
       <Navbar />
       <Routes>
-        <Route path='/' element={ <Home />} />
+        <Route path='/' element={ <ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/notification/:id' element={<Notification />} />
         <Route path='/donation' element={<Donation />} />
@@ -39,6 +42,8 @@ function User() {
         <Route path='/feedback' element={<Feedback />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/vision-mission' element={<VisionMission />} />
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
       </Routes>
     </>
   );

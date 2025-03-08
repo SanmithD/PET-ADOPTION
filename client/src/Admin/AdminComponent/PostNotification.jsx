@@ -23,7 +23,6 @@ function PostNotification() {
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
   const { id } = useParams();
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
   // Form validation state
   const [validation, setValidation] = useState({
@@ -46,7 +45,7 @@ function PostNotification() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${VITE_API_BASE_URL}/api/notification/getByIdNotification/${id}`
+        `${import.meta.env.VITE_PORT}/api/notification/getByIdNotification/${id}`
       );
       const data = response.data?.response || {};
       setNotification({
@@ -78,7 +77,7 @@ function PostNotification() {
     setLoading(true);
     try {
       await axios.put(
-        `${VITE_API_BASE_URL}/api/notification/updateNotification/${id}`,
+        `${import.meta.env.VITE_PORT}/api/notification/updateNotification/${id}`,
         notification
       );
       setSuccess('Notification updated successfully');
@@ -99,7 +98,7 @@ function PostNotification() {
     }
     setLoading(true);
     try {
-      await axios.post(`${VITE_API_BASE_URL}/api/notification/postNotification`, notification);
+      await axios.post(`${import.meta.env.VITE_PORT}/api/notification/postNotification`, notification);
       setSuccess('Notification published successfully');
       setNotification({ title: '', message: '' });
     } catch (error) {
@@ -128,17 +127,17 @@ function PostNotification() {
     <Container
       maxWidth="sm"
       sx={{
-        py: { xs: 4, sm: 6, md: 8 }, // Responsive padding
+        py: { xs: 4, sm: 6, md: 8 }, 
         display: 'flex',
         justifyContent: 'center',
-        minHeight: '100vh', // Full height for centering
+        minHeight: '100vh',
       }}
     >
       <Box
         sx={{
           position: 'relative',
           width: '100%',
-          maxWidth: '600px', // Limit max width for larger screens
+          maxWidth: '600px',
         }}
       >
         <Typography
@@ -149,8 +148,8 @@ function PostNotification() {
             fontWeight: 'bold',
             textAlign: 'center',
             color: 'primary.main',
-            mb: { xs: 2, sm: 4 }, // Responsive margin
-            fontSize: { xs: '1.75rem', sm: '2rem', md: '2.25rem' }, // Responsive font size
+            mb: { xs: 2, sm: 4 }, 
+            fontSize: { xs: '1.75rem', sm: '2rem', md: '2.25rem' },
           }}
         >
           {id ? 'Edit Notification' : 'Create New Notification'}
@@ -161,14 +160,14 @@ function PostNotification() {
           variant="outlined"
           onClick={() => navigate('/admin/manageNotification')}
           sx={{
-            position: { xs: 'static', sm: 'absolute' }, // Static on mobile, absolute on desktop
+            position: { xs: 'static', sm: 'absolute' }, 
             top: { sm: 0 },
-            right: { sm: 0, md: -150 }, // Adjust right positioning
-            mb: { xs: 2, sm: 0 }, // Margin bottom on mobile
+            right: { sm: 0, md: -150 }, 
+            mb: { xs: 2, sm: 0 },
             textTransform: 'none',
             borderRadius: 1,
             fontWeight: 500,
-            fontSize: { xs: '0.875rem', sm: '1rem' }, // Responsive font size
+            fontSize: { xs: '0.875rem', sm: '1rem' }, 
           }}
         >
           Manage Notifications
@@ -177,7 +176,7 @@ function PostNotification() {
         <Paper
           elevation={3}
           sx={{
-            p: { xs: 2, sm: 3, md: 4 }, // Responsive padding
+            p: { xs: 2, sm: 3, md: 4 },
             borderRadius: 2,
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
             bgcolor: 'background.paper',
@@ -199,7 +198,7 @@ function PostNotification() {
                 InputProps={{ sx: { borderRadius: 1 } }}
                 sx={{
                   '& .MuiInputBase-input': {
-                    fontSize: { xs: '0.875rem', sm: '1rem' }, // Responsive input font size
+                    fontSize: { xs: '0.875rem', sm: '1rem' },
                   },
                 }}
               />
@@ -220,7 +219,7 @@ function PostNotification() {
                 InputProps={{ sx: { borderRadius: 1 } }}
                 sx={{
                   '& .MuiInputBase-input': {
-                    fontSize: { xs: '0.875rem', sm: '1rem' }, // Responsive input font size
+                    fontSize: { xs: '0.875rem', sm: '1rem' }, 
                   },
                 }}
               />
@@ -229,7 +228,7 @@ function PostNotification() {
               {success && <Alert severity="success">{success}</Alert>}
 
               <Stack
-                direction={{ xs: 'column', sm: 'row' }} // Stack buttons vertically on mobile
+                direction={{ xs: 'column', sm: 'row' }} 
                 spacing={{ xs: 1, sm: 2 }}
                 justifyContent="flex-end"
               >
@@ -240,8 +239,8 @@ function PostNotification() {
                   sx={{
                     borderRadius: 1,
                     textTransform: 'none',
-                    fontSize: { xs: '0.875rem', sm: '1rem' }, // Responsive font size
-                    px: { xs: 2, sm: 3 }, // Responsive padding
+                    fontSize: { xs: '0.875rem', sm: '1rem' },
+                    px: { xs: 2, sm: 3 }, 
                   }}
                 >
                   Cancel
@@ -254,9 +253,9 @@ function PostNotification() {
                     py: 1,
                     borderRadius: 1,
                     textTransform: 'none',
-                    minWidth: { xs: '100%', sm: 120 }, // Full width on mobile
-                    fontSize: { xs: '0.875rem', sm: '1rem' }, // Responsive font size
-                    px: { xs: 2, sm: 3 }, // Responsive padding
+                    minWidth: { xs: '100%', sm: 120 }, 
+                    fontSize: { xs: '0.875rem', sm: '1rem' }, 
+                    px: { xs: 2, sm: 3 }, 
                     bgcolor: 'primary.main',
                     '&:hover': { bgcolor: 'primary.dark' },
                   }}

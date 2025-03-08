@@ -62,33 +62,33 @@ const updateUser = async(req, res) =>{
             message: "Please enter details"
         });
     };
-    const user = jwt.verify(token, JWT);
-    if(!user){
-        return res.status(404).json({
-            success: false,
-            message: "User not found"
-        });
-    }
+    
     try {
-        // const newPass = await bcrypt.hash(password, 10);
+        const user = jwt.verify(token, JWT);
+        if(!user){
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+        
         const updateRepo = await signupModel.findByIdAndUpdate(user.id,{
             profileImage: profile,
             name,
             email,
-            // password: newPass
         },{ new: true });
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
-            message: "Signup success",
+            message: "Update successful",
             updateRepo
         });
     } catch (error) {
-        res.status(500).json({
+        console.log(error);
+        return res.status(500).json({
             success: false,
             message: "Server error"
         });
-        console.log(error);
     }
 }
 
@@ -136,16 +136,12 @@ const login = async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        if (!res.headersSent) { // Check if headers are already sent
-            return res.status(500).json({
-                success: false,
-                message: "Server error",
-            });
-        }
+        return res.status(500).json({
+            success: false,
+            message: "Server error",
+        });
     }
 };
-
-
 
 const getAllUser = async(req, res) =>{
     try {
@@ -156,17 +152,17 @@ const getAllUser = async(req, res) =>{
                 message: "No users found"
             });
         };
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "All users",
             users
         });
     } catch (error) {
-        res.status(500).json({
+        console.log(error);
+        return res.status(500).json({
             success: false,
             message: "Server error"
         });
-        console.log(error);
     }
 }
 
@@ -195,20 +191,19 @@ const getUserById = async(req, res) =>{
                 message: "User does not exists"
             });
         }
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "User",
             user
         });
     } catch (error) {
-        res.status(200).json({
+        console.log(error);
+        return res.status(500).json({
             success: false,
             message: "Server error"
         });
-        console.log(error);
     }
 }
-
 
 const deleteUser = async(req, res) =>{
     const token = req.headers.authorization?.split(" ")[1];
@@ -228,19 +223,18 @@ const deleteUser = async(req, res) =>{
                 message: "No users found"
             });
         }
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "User deleted successfully",
             user
         });
     } catch (error) {
-        res.status(500).json({
+        console.log(error);
+        return res.status(500).json({
             success: false,
             message: "Server error"
         });
-        console.log(error);
     }
 }
 
 export { deleteUser, getAllUser, getUserById, login, signup, updateUser };
-

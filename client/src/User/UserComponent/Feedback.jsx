@@ -16,7 +16,6 @@ import React, { useState } from 'react';
 function Feedback() {
   const [feedback, setFeedback] = useState('');
   const [loading, setLoading] = useState(false);
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [alert, setAlert] = useState({ open: false, message: '', severity: 'success' });
 
   const handleChange = (e) => {
@@ -35,7 +34,7 @@ function Feedback() {
 
     try {
       const response = await axios.post(
-        `${VITE_API_BASE_URL}/feedback/postFeedback`,
+        `${import.meta.env.VITE_PORT}/api/feedback/postFeedback`,
         { feedback },
         {
           headers: {

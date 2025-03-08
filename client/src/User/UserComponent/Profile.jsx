@@ -30,13 +30,12 @@ function Profile() {
   const [error, setError] = useState(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const navigate = useNavigate();
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Fetch user profile
   const userProfile = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${VITE_API_BASE_URL}/user/getUserById`, {
+      const response = await axios.get(`${import.meta.env.VITE_PORT}/api/user/getUserById`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setData(response.data.user || {});
@@ -51,7 +50,15 @@ function Profile() {
 
   useEffect(() => {
     userProfile();
+    autoLogout();
   }, []);
+
+  const autoLogout = () =>{
+    setTimeout(()=>{
+      localStorage.removeItem('token');
+      navigate('/login')
+    },  5 * 24 * 60 * 60 * 1000) // it should logout automatically after two days
+  }
 
   // Handle input changes
   const handleChange = (e) => {
@@ -73,7 +80,7 @@ function Profile() {
       formData.append('email', data.email);
       if (selectedImage) formData.append('profileImage', selectedImage);
 
-      await axios.put(`${VITE_API_BASE_URL}/user/updateUser`, formData, {
+      await axios.put(`${import.meta.env.VITE_PORT}/api/user/updateUser`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
@@ -96,7 +103,7 @@ function Profile() {
     try {
       setLoading(true);
       setError(null);
-      await axios.delete(`${VITE_API_BASE_URL}/user/deleteUser`, {
+      await axios.delete(`${import.meta.env.VITE_PORT}/api/user/deleteUser`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       localStorage.removeItem('token');
@@ -114,7 +121,7 @@ function Profile() {
     <Container
       maxWidth="sm"
       sx={{
-        py: { xs: 2, sm: 4, md: 6 }, // Responsive padding
+        py: { xs: 2, sm: 4, md: 6 }, 
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -124,7 +131,7 @@ function Profile() {
       <Card
         sx={{
           width: '100%',
-          p: { xs: 2, sm: 3 }, // Responsive padding
+          p: { xs: 2, sm: 3 }, 
           boxShadow: 3,
           borderRadius: 2,
           textAlign: 'center',

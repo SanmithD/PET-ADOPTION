@@ -104,11 +104,11 @@ const Impact = () => {
       <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
         {impactData.map((item, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
-            <CounterBox>
+            <CounterBox sx={{ height: 220 }} >
               <CounterNumber
                 variant="h2"
                 sx={{
-                  fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }, // Responsive font size
+                  fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }, 
                 }}
               >
                 {item.count}+

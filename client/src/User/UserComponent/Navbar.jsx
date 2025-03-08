@@ -31,7 +31,6 @@ export default function Navbar() {
   const [notificationsAnchorEl, setNotificationsAnchorEl] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [notiLength, setNotiLength] = useState(0);
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -49,7 +48,7 @@ export default function Navbar() {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get(`${VITE_API_BASE_URL}/notification/getAllNotification`);
+        const response = await axios.get(`${import.meta.env.VITE_PORT}/api/notification/getAllNotification`);
         const data = response.data.response || [];
         setNotifications(data);
         setNotiLength(data.length);
@@ -226,7 +225,7 @@ export default function Navbar() {
         sx={{
           backgroundColor: 'white',
           boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.1)',
-          px: { xs: 1, sm: 2 }, // Responsive padding
+          px: { xs: 1, sm: 2 }, 
         }}
       >
         <Toolbar sx={{ justifyContent: 'space-between' }}>
@@ -249,7 +248,7 @@ export default function Navbar() {
                 color: 'black',
                 cursor: 'pointer',
                 fontSize: { xs: '1.25rem', sm: '1.5rem' },
-                display: { xs: 'block' }, // Always visible with responsive size
+                display: { xs: 'block' }, 
               }}
               onClick={() => navigate('/')}
             >

@@ -20,7 +20,7 @@ function App() {
     <>
       <Routes>
         <Route path='/*' element={<ProtectedRoute> <User/></ProtectedRoute>}/>
-        <Route path='/admin/*' element={<Admin/>}/>
+        <Route path='/admin/*' element={<ProtectedRoute><Admin/> </ProtectedRoute>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
       </Routes>

@@ -8,19 +8,20 @@ import {
   Grid,
   Stack,
   Typography,
-} from '@mui/material';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+} from "@mui/material";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function ManageRequest() {
   const [requests, setRequests] = useState([]);
   const [status, setStatus] = useState(false);
   const [rejected, setRejected] = useState(false);
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
   const allAdoptionRequest = async () => {
     try {
-      const response = await axios.get(`${VITE_API_BASE_URL}/adoption/getAllRequest`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_PORT}/api/adoption/getAllRequest`
+      );
       setRequests(response.data.response || []);
     } catch (error) {
       console.log(error);
@@ -28,14 +29,20 @@ function ManageRequest() {
   };
 
   const handleAccept = (id) => {
+    // Update only the specific request's status in the array
+    setRequests(requests.map(request => 
+      request._id === id 
+        ? { ...request, isAccepted: true } 
+        : request
+    ));
     console.log(`Accepted request: ${id}`);
-    setStatus(true);
-    setRejected(true);
   };
 
-  const handleReject = async(id) => {
+  const handleReject = async (id) => {
     try {
-      const response = await axios.delete(`${VITE_API_BASE_URL}/adoption/rejectRequest/${id}`);
+      const response = await axios.delete(
+        `${import.meta.env.VITE_PORT}/api/adoption/rejectRequest/${id}`
+      );
       allAdoptionRequest();
     } catch (error) {
       console.log(error);
@@ -52,7 +59,7 @@ function ManageRequest() {
       <Typography variant="h3" gutterBottom sx={{ mb: 4 }}>
         Adoption Requests
       </Typography>
-      
+
       <Stack spacing={3}>
         {requests.map((request) => (
           <Card key={request._id} sx={{ boxShadow: 3 }}>
@@ -77,37 +84,56 @@ function ManageRequest() {
                     <strong>Address:</strong> {request.address}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Submitted:</strong> {new Date(request.createdAt).toLocaleDateString()}
+                    <strong>Submitted:</strong>{" "}
+                    {new Date(request.createdAt).toLocaleDateString()}
                   </Typography>
                 </Grid>
               </Grid>
             </CardContent>
             <Divider />
-            <CardActions sx={{ justifyContent: 'flex-end', p: 2 }}>
+            <CardActions sx={{ justifyContent: "flex-end", p: 2 }}>
               <Button
                 variant="contained"
                 color="success"
                 onClick={() => handleAccept(request._id)}
                 sx={{ mr: 1 }}
+                disabled={request.isAccepted}
               >
-                {status ? "ACCEPTED" : "ACCEPT"}
+                {request.isAccepted ? "ACCEPTED" : "ACCEPT"}
               </Button>
-              { rejected ? " " : 
-              <Button
-                variant="outlined"
-                color="error"
-                onClick={() => handleReject(request._id)}
-              >
-                Reject
-              </Button>
-               }
+
+              {!request.isAccepted && (
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => handleReject(request._id)}
+                >
+                  Reject
+                </Button>
+              )}
+              {/* {rejected ? (
+                " "
+              ) : (
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => handleReject(request._id)}
+                >
+                  Reject
+                </Button>
+              )} */}
             </CardActions>
           </Card>
         ))}
       </Stack>
 
       {requests.length === 0 && (
-        <Typography variant="h6" color="text.secondary" align="center" sx={{ mt: 4 }}>
+        <Typography
+          variant="h6"
+          color="text.secondary"
+          align="center"
+          sx={{ mt: 4 }}
+        >
           No adoption requests found
         </Typography>
       )}

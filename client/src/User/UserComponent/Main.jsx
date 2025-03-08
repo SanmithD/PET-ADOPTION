@@ -73,7 +73,7 @@ function Main() {
           color: '#fff',
           backgroundColor: 'orangered',
           mt: { xs: 2, sm: 4 },
-          px: { xs: 3, sm: 4 }, 
+          px: { xs: 3, sm: 4 },
           py: 1.5,
           '&:hover': { backgroundColor: '#e65c00' },
         }}

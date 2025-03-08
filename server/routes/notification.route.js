@@ -18,3 +18,4 @@ notificationRouter.delete("/deleteByIdNotification/:id", deleteNotification);
 notificationRouter.put("/updateNotification/:id", updateNotification);
 
 export default notificationRouter;
+
