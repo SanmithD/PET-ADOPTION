@@ -1,12 +1,12 @@
 {
     "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
-    }
-  ],
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/static-build",
+        "config": { "distDir": "dist" }
+      }
+    ],
     "routes": [
       {
         "src": "/assets/(.*)",
@@ -18,6 +18,6 @@
       }
     ],
     "env": {
-      "VITE_API_BASE_URL": "pet-adoption-teal.vercel.app"
+      "VITE_API_BASE_URL": "https://pet-adoption-teal.vercel.app/api"
     }
   }
