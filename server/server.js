@@ -12,11 +12,7 @@ import userRouter from './routes/user.route.js';
 
 connectDB();
 const app = express();
-app.use(cors({
-    origin: ['https://pet-adoption-nlfv.vercel.app', 'http://localhost:5173'], 
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true
-}));
+app.use(cors());
   
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 7000
