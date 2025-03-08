@@ -4,20 +4,19 @@
       {
         "src": "package.json",
         "use": "@vercel/static-build",
-        "config": { "distDir": "dist" }
+        "config": {
+          "distDir": "dist"
+        }
       }
     ],
     "routes": [
       {
-        "src": "/assets/(.*)",
-        "dest": "/assets/$1"
-      },
-      {
         "src": "/(.*)",
-        "dest": "/index.html"
+        "dest": "/index.html",
+        "headers": {
+          "Cache-Control": "s-maxage=1, stale-while-revalidate"
+        }
       }
-    ],
-    "env": {
-      "VITE_API_BASE_URL": "https://pet-adoption-teal.vercel.app/api"
-    }
+    ]
   }
+  
