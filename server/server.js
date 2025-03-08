@@ -12,19 +12,8 @@ import userRouter from './routes/user.route.js';
 
 connectDB();
 const app = express();
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL || "https://pet-adoption-nlfv.vercel.app");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    res.header("Access-Control-Allow-Credentials", "true");
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
-    }
-    next();
-});
-
 app.use(cors({
-    origin: process.env.CLIENT_URL || "https://pet-adoption-nlfv.vercel.app",
+    origin: ['https://pet-adoption-nlfv.vercel.app', 'http://localhost:5173'], 
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
 }));
