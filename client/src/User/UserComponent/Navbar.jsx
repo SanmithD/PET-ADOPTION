@@ -50,8 +50,8 @@ export default function Navbar() {
         const userId = localStorage.getItem('userId'); 
         
         const [publicNoti, personalNoti] = await Promise.all([
-          axios.get(`${import.meta.env.VITE_PORT}/api/notification/getAllNotification`),
-          axios.get(`${import.meta.env.VITE_PORT}/api/notification/getOwnNotification`, {
+          axios.get(`https://pet-adoption-5.onrender.com/api/notification/getAllNotification`),
+          axios.get(`https://pet-adoption-5.onrender.com/api/notification/getOwnNotification`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`
             }

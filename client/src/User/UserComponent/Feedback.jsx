@@ -34,7 +34,7 @@ function Feedback() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_PORT}/api/feedback/postFeedback`,
+        `https://pet-adoption-5.onrender.com/api/feedback/postFeedback`,
         { feedback },
         {
           headers: {

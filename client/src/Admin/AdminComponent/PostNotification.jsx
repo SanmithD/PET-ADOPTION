@@ -45,7 +45,7 @@ function PostNotification() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_PORT}/api/notification/getByIdNotification/${id}`
+        `https://pet-adoption-5.onrender.com/api/notification/getByIdNotification/${id}`
       );
       const data = response.data?.response || {};
       setNotification({
@@ -77,7 +77,7 @@ function PostNotification() {
     setLoading(true);
     try {
       await axios.put(
-        `${import.meta.env.VITE_PORT}/api/notification/updateNotification/${id}`,
+        `https://pet-adoption-5.onrender.com/api/notification/updateNotification/${id}`,
         notification
       );
       setSuccess('Notification updated successfully');
@@ -98,7 +98,7 @@ function PostNotification() {
     }
     setLoading(true);
     try {
-      await axios.post(`${import.meta.env.VITE_PORT}/api/notification/postNotification`, notification);
+      await axios.post(`https://pet-adoption-5.onrender.com/api/notification/postNotification`, notification);
       setSuccess('Notification published successfully');
       setNotification({ title: '', message: '' });
     } catch (error) {

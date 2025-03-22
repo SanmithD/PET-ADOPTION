@@ -73,7 +73,7 @@ function Message() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_PORT}/api/contact/postMessage`,
+        `https://pet-adoption-5.onrender.com/api/contact/postMessage`,
         formData,
         {
           headers: {
@@ -96,7 +96,7 @@ function Message() {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${import.meta.env.VITE_PORT}/api/contact/getOwnMsg`,{
+      const response = await axios.get(`https://pet-adoption-5.onrender.com/api/contact/getOwnMsg`,{
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
