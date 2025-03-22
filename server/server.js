@@ -13,7 +13,9 @@ import userRouter from './routes/user.route.js';
 
 connectDB();
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: 'https://pet-adoption-4-un7x.onrender.com'
+}));
   
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 7000
