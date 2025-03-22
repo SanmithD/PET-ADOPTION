@@ -8,6 +8,7 @@ function Signup() {
   const [formData, setFormData] = useState({
     profileImage: "",
     name: "",
+    role: 'user',
     email: "",
     password: "",
   });
@@ -33,6 +34,7 @@ function Signup() {
     const newForm = new FormData();
     newForm.append("profileImage", formData.profileImage);
     newForm.append("name", formData.name);
+    newForm.append('role', formData.role );
     newForm.append("email", formData.email);
     newForm.append("password", formData.password);
   

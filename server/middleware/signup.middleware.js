@@ -4,8 +4,9 @@ const signupMiddleware = (req, res, next) =>{
     const signupSchema = Joi.object({
         profileImage: Joi.string().optional(),
         name: Joi.string().min(5).max(15).required(),
+        role: Joi.string().valid('user', 'admin').optional().default('user'),
         email: Joi.string().email().required(),
-        password: Joi.string().min(8).max(20).required()
+        password: Joi.string().min(5).max(20).required()
     });
 
     const { error } = signupSchema.validate(req.body);
@@ -24,7 +25,7 @@ const loginMiddleware = (req, res, next) =>{
             'string-email' : 'Invalid email type',
             'any.required' : 'Email is required'
         }),
-        password: Joi.string().min(8).max(20).required().messages({
+        password: Joi.string().min(5).max(20).required().messages({
             'string-password' : 'Invalid password type',
             'any.required' : 'Password is required'
         })

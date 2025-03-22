@@ -38,7 +38,8 @@ import { useNavigate } from 'react-router-dom';
     }, []);
   
     const filteredPets = petData.filter(pet =>
-      pet.breed?.toLowerCase().includes(searchTerm.toLowerCase())
+      pet.breed?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      pet.petNumber?.toLowerCase().includes(searchTerm.toLowerCase())
     );
   
     if (loading) {
@@ -75,7 +76,7 @@ import { useNavigate } from 'react-router-dom';
                     height="200"
                     image={data.petImage}
                     alt={data.breed}
-                    sx={{ objectFit: 'cover' }}
+                    sx={{ objectFit: 'fill' }}
                   />
                   <CardContent sx={{ display: 'flex', flexDirection: 'column' }} >
                     <Typography gutterBottom variant="h5" component="div">

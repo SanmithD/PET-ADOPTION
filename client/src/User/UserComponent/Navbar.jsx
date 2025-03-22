@@ -5,7 +5,6 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import MoreIcon from '@mui/icons-material/More';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import PetsIcon from '@mui/icons-material/Pets';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {
   AppBar,
@@ -46,17 +45,33 @@ export default function Navbar() {
   const handleNotificationsClose = () => setNotificationsAnchorEl(null);
 
   useEffect(() => {
-    const fetchNotifications = async () => {
+    const fetchAllNotifications = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_PORT}/api/notification/getAllNotification`);
-        const data = response.data.response || [];
-        setNotifications(data);
-        setNotiLength(data.length);
+        const userId = localStorage.getItem('userId'); 
+        
+        const [publicNoti, personalNoti] = await Promise.all([
+          axios.get(`${import.meta.env.VITE_PORT}/api/notification/getAllNotification`),
+          axios.get(`${import.meta.env.VITE_PORT}/api/notification/getOwnNotification`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+          })
+        ]);
+  
+        const publicData = Array.isArray(publicNoti.data?.response) ? publicNoti.data.response : [];
+        const personalData = Array.isArray(personalNoti.data?.response) 
+          ? personalNoti.data.response.filter(notification => notification.requester === userId)
+          : [];
+        
+        const combinedNotifications = [...publicData, ...personalData];
+        setNotifications(combinedNotifications);
+        setNotiLength(combinedNotifications.length);
       } catch (error) {
         console.log('Error fetching notifications:', error);
       }
     };
-    fetchNotifications();
+  
+    fetchAllNotifications();
   }, []);
 
   const sortedNotifications = [...notifications].sort(
@@ -67,7 +82,6 @@ export default function Navbar() {
     { text: 'Feedback', icon: <FeedbackIcon />, path: '/feedback' },
     { text: 'Blog', icon: <BookIcon />, path: '/blog' },
     { text: 'Vision & Mission', icon: <VisibilityIcon />, path: '/vision-mission' },
-    { text: 'Rescue Posts', icon: <PetsIcon />, path: '/rescue-posts' },
   ];
 
   const renderMainMenu = (
@@ -115,7 +129,7 @@ export default function Navbar() {
         elevation: 3,
         sx: {
           maxHeight: 400,
-          width: { xs: '90vw', sm: '20rem', md: '25rem' }, // Responsive width
+          width: { xs: '90vw', sm: '20rem', md: '25rem' },
           borderRadius: 1,
           mt: 1,
           overflowY: 'auto',
@@ -229,7 +243,6 @@ export default function Navbar() {
         }}
       >
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          {/* Left Section */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IconButton
               size="large"
@@ -256,7 +269,6 @@ export default function Navbar() {
             </Typography>
           </Box>
 
-          {/* Middle Section (Desktop Buttons) */}
           <Box
             sx={{
               display: { xs: 'none', md: 'flex' },
@@ -303,7 +315,6 @@ export default function Navbar() {
             </Button>
           </Box>
 
-          {/* Right Section */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
               <IconButton

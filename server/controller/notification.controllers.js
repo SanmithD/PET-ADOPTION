@@ -1,3 +1,5 @@
+import 'dotenv/config';
+import jwt from 'jsonwebtoken';
 import mongoose from "mongoose";
 import notificationModel from "../models/notification.model.js";
 
@@ -182,12 +184,85 @@ const updateNotification = async (req, res) => {
   }
 };
 
+const pushNotificationToId = async(req, res) =>{
+  const { id } = req.params;
+  const { title, message } = req.body;
+
+  if(!id){
+    return res.status(400).json({
+      success: false,
+      message: 'Invalid id'
+    });
+  };
+  try {
+    const adoptionNotification = new notificationModel({
+      userId : id,
+      title,
+      message,
+    });
+    if(!adoptionNotification){
+      return res.status(400).json({
+        success: false,
+        message: 'Failed to push Notification'
+      });
+    };
+    await adoptionNotification.save();
+    res.status(200).json({
+      success: true,
+      message: 'Notification Posted',
+      adoptionNotification
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+    console.log(error);
+  }
+}
+
+const getOwnNotification = async(req, res) =>{
+  const token = req.headers.authorization?.split(" ")[1];
+  const JWT = process.env.SECRET;
+
+  if(!token){
+    return res.status(403).json({
+      success: false,
+      message: 'Unauthorized'
+    });
+  }
+  try {
+    const { id } = jwt.verify(token, JWT);
+    if(!id){
+      return res.status(404).json({
+        success: false,
+        message: 'User not found'
+      });
+    }
+    const response = await notificationModel.find({ userId: id });
+    if(!response){
+      return res.status(404).json({
+        success: false,
+        message: 'Failed to fetch response'
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Response',
+      response
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+    console.log(error);
+  }
+}
+
 export {
-  deleteAllNotification,
-  deleteNotification,
-  getAllNotification,
-  getSingleNotification,
-  pushNotification,
-  updateNotification
+  deleteAllNotification, deleteNotification,
+  getAllNotification, getOwnNotification, getSingleNotification,
+  pushNotification, pushNotificationToId, updateNotification
 };
 

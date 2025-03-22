@@ -20,8 +20,9 @@ const makeAdoption = async(req, res) =>{
                 message: "Error"
             });
         };
-        const { name } = jwt.verify(token, JWT);
+        const { name, id } = jwt.verify(token, JWT);
         const adopt = new adoptionModel({
+            userId: id,
             userName,
             breed,
             phoneNumber,
@@ -129,3 +130,4 @@ const rejectRequest = async(req, res) => {
 }
 
 export { getAllAdoption, getUserAdoption, makeAdoption, rejectRequest };
+

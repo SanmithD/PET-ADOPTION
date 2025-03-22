@@ -30,9 +30,17 @@ function Signup() {
         `${import.meta.env.VITE_PORT}/api/user/login`,
         formData,
       );
-      
+      console.log(response.data);
+      const role = response.data.role;
       localStorage.setItem("token", response.data.token);
-      navigate("/");
+      localStorage.setItem("userId", response.data.userId);
+
+      if(role === 'admin'){
+        navigate("/admin");
+      }else{
+        navigate('/')
+      }
+
     } catch (error) {
       setError(error.response?.data?.message || "Login failed.");
     }

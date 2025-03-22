@@ -27,6 +27,7 @@ const signup = async (req, res) => {
         const newUser = new signupModel({
             profileImage: profile,
             name,
+            role: 'user',
             email,
             password: newPass,
         });
@@ -129,7 +130,9 @@ const login = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Login successful", 
+            userId: user._id,
             name: user.name,
+            role: user.role,
             email: user.email,
             token,
         });
@@ -238,3 +241,4 @@ const deleteUser = async(req, res) =>{
 }
 
 export { deleteUser, getAllUser, getUserById, login, signup, updateUser };
+

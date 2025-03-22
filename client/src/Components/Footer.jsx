@@ -42,8 +42,7 @@ function Footer() {
           <Grid item xs={6} md={2}>
             <Typography variant="h6" gutterBottom>Quick Links</Typography>
             <Link href="/adopt" color="text.secondary" display="block" variant="body2">Adopt a Pet</Link>
-            <Link href="/donate" color="text.secondary" display="block" variant="body2">Donate</Link>
-            <Link href="/volunteer" color="text.secondary" display="block" variant="body2">Volunteer</Link>
+            <Link href="/donation" color="text.secondary" display="block" variant="body2">Donate</Link>
             <Link href="/blog" color="text.secondary" display="block" variant="body2">Blog</Link>
           </Grid>
 

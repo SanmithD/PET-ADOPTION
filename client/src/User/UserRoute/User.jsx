@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Login from '../../Components/Login';
 import ProtectedRoute from '../../Components/ProtectedRoute';
 import Signup from '../../Components/Signup';
@@ -17,15 +17,15 @@ import View from '../UserComponent/View';
 import VisionMission from '../UserComponent/VisionMission';
 
 function User() {
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // const token = localStorage.getItem('token');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const token = localStorage.getItem('token');
 
-  // useEffect(() => {
-  //   if (!token && location.pathname !== '/signup' ) {
-  //     navigate('/login');
-  //   }
-  // }, [token, navigate, location.pathname]);
+  useEffect(() => {
+    if (!token && location.pathname !== '/signup' ) {
+      navigate('/login');
+    }
+  }, [token, navigate, location.pathname]);
 
   return (
     <>
