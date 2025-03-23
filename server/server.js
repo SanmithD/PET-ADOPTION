@@ -13,9 +13,7 @@ import userRouter from './routes/user.route.js';
 
 connectDB();
 const app = express();
-app.use(cors({
-    origin: "https://pet-adoption-front.vercel.app"
-}));
+app.use(cors());
   
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 7000
@@ -32,6 +30,6 @@ app.use('/api/notification', notificationRouter );
 app.use('/api/pet', petRouter );
 
 
-app.listen(PORT, '0.0.0.0', ()=>{
+app.listen(PORT, ()=>{
     console.log(`server running on port ${PORT}`);
 });

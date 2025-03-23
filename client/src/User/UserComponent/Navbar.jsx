@@ -7,17 +7,17 @@ import MoreIcon from '@mui/icons-material/More';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {
-    AppBar,
-    Badge,
-    Box,
-    Button,
-    IconButton,
-    ListItemIcon,
-    ListItemText,
-    Menu,
-    MenuItem,
-    Toolbar,
-    Typography,
+  AppBar,
+  Badge,
+  Box,
+  Button,
+  IconButton,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -45,33 +45,17 @@ export default function Navbar() {
   const handleNotificationsClose = () => setNotificationsAnchorEl(null);
 
   useEffect(() => {
-    const fetchAllNotifications = async () => {
+    const fetchNotifications = async () => {
       try {
-        const userId = localStorage.getItem('userId'); 
-        
-        const [publicNoti, personalNoti] = await Promise.all([
-          axios.get(`https://pet-adoption-back.onrender.com/api/notification/getAllNotification`),
-          axios.get(`https://pet-adoption-back.onrender.com/api/notification/getOwnNotification`, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-          })
-        ]);
-  
-        const publicData = Array.isArray(publicNoti.data?.response) ? publicNoti.data.response : [];
-        const personalData = Array.isArray(personalNoti.data?.response) 
-          ? personalNoti.data.response.filter(notification => notification.requester === userId)
-          : [];
-        
-        const combinedNotifications = [...publicData, ...personalData];
-        setNotifications(combinedNotifications);
-        setNotiLength(combinedNotifications.length);
+        const response = await axios.get(`http://localhost:7000/api/notification/getAllNotification`);
+        const data = response.data.response || [];
+        setNotifications(data);
+        setNotiLength(data.length);
       } catch (error) {
         console.log('Error fetching notifications:', error);
       }
     };
-  
-    fetchAllNotifications();
+    fetchNotifications();
   }, []);
 
   const sortedNotifications = [...notifications].sort(
@@ -129,7 +113,7 @@ export default function Navbar() {
         elevation: 3,
         sx: {
           maxHeight: 400,
-          width: { xs: '90vw', sm: '20rem', md: '25rem' },
+          width: { xs: '90vw', sm: '20rem', md: '25rem' }, // Responsive width
           borderRadius: 1,
           mt: 1,
           overflowY: 'auto',
@@ -243,6 +227,7 @@ export default function Navbar() {
         }}
       >
         <Toolbar sx={{ justifyContent: 'space-between' }}>
+          {/* Left Section */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IconButton
               size="large"
@@ -269,6 +254,7 @@ export default function Navbar() {
             </Typography>
           </Box>
 
+          {/* Middle Section (Desktop Buttons) */}
           <Box
             sx={{
               display: { xs: 'none', md: 'flex' },
@@ -315,6 +301,7 @@ export default function Navbar() {
             </Button>
           </Box>
 
+          {/* Right Section */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
               <IconButton

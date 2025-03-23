@@ -22,7 +22,7 @@ function ViewFeedback() {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.get(`https://pet-adoption-back.onrender.com/api/feedback/getAllFeedbacks`);
+      const response = await axios.get(`http://localhost:7000/api/feedback/getAllFeedbacks`);
       setFeedback(response.data.response || []);
     } catch (error) {
       setError('Failed to load feedback');
@@ -35,7 +35,7 @@ function ViewFeedback() {
   const handleDelete = async (id) => {
     setLoading(true);
     try {
-      await axios.delete(`https://pet-adoption-back.onrender.com/api/feedback/deleteSingleFeedback/${id}`);
+      await axios.delete(`http://localhost:7000/api/feedback/deleteSingleFeedback/${id}`);
       setFeedback(feedback.filter((item) => item._id !== id));
       getAllFeedbacks();
     } catch (error) {

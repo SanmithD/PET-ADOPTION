@@ -25,7 +25,7 @@ function ManageNotifications() {
   const getAllNoti = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`https://pet-adoption-back.onrender.com/api/notification/getAllNotification`);
+      const response = await axios.get(`http://localhost:7000/api/notification/getAllNotification`);
       setAllNotification(response.data.response || []);
     } catch (error) {
       console.log(error);
@@ -36,7 +36,7 @@ function ManageNotifications() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://pet-adoption-back.onrender.com/api/notification/deleteByIdNotification/${id}`);
+      await axios.delete(`http://localhost:7000/api/notification/deleteByIdNotification/${id}`);
       getAllNoti();
     } catch (error) {
       console.log(error);
@@ -45,7 +45,7 @@ function ManageNotifications() {
 
   const handleDeleteAll = async () => {
     try {
-      await axios.delete(`https://pet-adoption-back.onrender.com/api/notification/deleteAllNotification`);
+      await axios.delete(`http://localhost:7000/api/notification/deleteAllNotification`);
       getAllNoti();
     } catch (error) {
       console.log(error);

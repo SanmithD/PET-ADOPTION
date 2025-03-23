@@ -40,7 +40,7 @@ function Signup() {
   
     try {
       const response = await axios.post(
-        `https://pet-adoption-back.onrender.com/api/user/signup`,
+        `http://localhost:7000/api/user/signup`,
         newForm,
         {
           headers: {

@@ -2,6 +2,7 @@ import 'dotenv/config';
 import jwt from 'jsonwebtoken';
 import mongoose from "mongoose";
 import notificationModel from "../models/notification.model.js";
+import responseModel from '../models/response.model.js';
 
 const pushNotification = async (req, res) => {
   const { title, message } = req.body;
@@ -195,7 +196,7 @@ const pushNotificationToId = async(req, res) =>{
     });
   };
   try {
-    const adoptionNotification = new notificationModel({
+    const adoptionNotification = new responseModel({
       userId : id,
       title,
       message,
@@ -239,7 +240,7 @@ const getOwnNotification = async(req, res) =>{
         message: 'User not found'
       });
     }
-    const response = await notificationModel.find({ userId: id });
+    const response = await responseModel.find({ userId: id });
     if(!response){
       return res.status(404).json({
         success: false,

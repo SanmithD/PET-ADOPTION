@@ -34,7 +34,7 @@ function Feedback() {
 
     try {
       const response = await axios.post(
-        `https://pet-adoption-back.onrender.com/api/feedback/postFeedback`,
+        `http://localhost:7000/api/feedback/postFeedback`,
         { feedback },
         {
           headers: {
