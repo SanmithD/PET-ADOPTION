@@ -13,7 +13,9 @@ import userRouter from './routes/user.route.js';
 
 connectDB();
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: "pet-adoption-front.vercel.app"
+}));
   
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 7000
