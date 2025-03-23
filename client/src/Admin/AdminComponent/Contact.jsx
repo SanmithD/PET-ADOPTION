@@ -42,7 +42,7 @@ const ContactPage = () => {
     const getAllMessages = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:7000/api/contact/getAllMsg`);
+        const response = await axios.get(`https://pet-adoption-yc64.onrender.com/api/contact/getAllMsg`);
         const messages = response.data.data || [];
         
         // Group messages by user and get the latest message for each user
@@ -69,7 +69,7 @@ const ContactPage = () => {
   const getUserMessages = async (userId) => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:7000/api/contact/getAllMsg`);
+      const response = await axios.get(`https://pet-adoption-yc64.onrender.com/api/contact/getAllMsg`);
       const messages = response.data.data || [];
       
       // Filter messages by userId
@@ -101,7 +101,7 @@ const ContactPage = () => {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('You must be logged in to reply');
       const response = await axios.post(
-        `http://localhost:7000/api/contact/messages/${messageId}/replies`,
+        `https://pet-adoption-yc64.onrender.com/api/contact/messages/${messageId}/replies`,
         { message: reply },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -123,7 +123,7 @@ const ContactPage = () => {
   const handleDelete = async (id) => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:7000/api/contact/deleteMsg/${id}`);
+      await axios.delete(`https://pet-adoption-yc64.onrender.com/api/contact/deleteMsg/${id}`);
       
       // Remove deleted message from both overall and user-specific messages
       setAllMessages((prevMessages) => 

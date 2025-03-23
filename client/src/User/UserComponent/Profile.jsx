@@ -35,7 +35,7 @@ function Profile() {
   const userProfile = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:7000/api/user/getUserById`, {
+      const response = await axios.get(`https://pet-adoption-yc64.onrender.com/api/user/getUserById`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setData(response.data.user || {});
@@ -80,7 +80,7 @@ function Profile() {
       formData.append('email', data.email);
       if (selectedImage) formData.append('profileImage', selectedImage);
 
-      await axios.put(`http://localhost:7000/api/user/updateUser`, formData, {
+      await axios.put(`https://pet-adoption-yc64.onrender.com/api/user/updateUser`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
@@ -103,7 +103,7 @@ function Profile() {
     try {
       setLoading(true);
       setError(null);
-      await axios.delete(`http://localhost:7000/api/user/deleteUser`, {
+      await axios.delete(`https://pet-adoption-yc64.onrender.com/api/user/deleteUser`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       localStorage.removeItem('token');

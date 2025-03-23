@@ -47,7 +47,7 @@ export default function Navbar() {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get(`http://localhost:7000/api/notification/getAllNotification`);
+        const response = await axios.get(`https://pet-adoption-yc64.onrender.com/api/notification/getAllNotification`);
         const data = response.data.response || [];
         setNotifications(data);
         setNotiLength(data.length);

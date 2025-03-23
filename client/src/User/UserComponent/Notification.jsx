@@ -35,7 +35,7 @@ function Notification() {
 
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:7000/api/notification/getByIdNotification/${id}`
+        `https://pet-adoption-yc64.onrender.com/api/notification/getByIdNotification/${id}`
       );
       setNotification(response.data.response);
       setError(null);

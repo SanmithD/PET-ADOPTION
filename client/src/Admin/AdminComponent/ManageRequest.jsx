@@ -42,7 +42,7 @@ function ManageRequest() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:7000/api/adoption/getAllRequest`
+        `https://pet-adoption-yc64.onrender.com/api/adoption/getAllRequest`
       );
       // Check if response.data.response is an array
       if (Array.isArray(response.data.response)) {
@@ -62,7 +62,7 @@ function ManageRequest() {
   const handleAccept = async (id) => {
     try {
       const response = await axios.post(
-        `http://localhost:7000/api/notification/postNotificationToId/${id}`,
+        `https://pet-adoption-yc64.onrender.com/api/notification/postNotificationToId/${id}`,
         acceptRequest
       );
       if (Array.isArray(response.data.message)) {
@@ -79,7 +79,7 @@ function ManageRequest() {
   const handleReject = async (id) => {
     try {
       const response = await axios.post(
-        `http://localhost:7000/api/notification/postNotificationToId/${id}`,
+        `https://pet-adoption-yc64.onrender.com/api/notification/postNotificationToId/${id}`,
         rejectRequest
       );
       if (Array.isArray(response.data.message)) {
