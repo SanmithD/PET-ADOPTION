@@ -2,9 +2,9 @@ import { Alert, Button, CssBaseline, Paper, TextField, Typography } from "@mui/m
 import { Box, Container } from "@mui/system";
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Signup() {
+function ResetPassword() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -26,28 +26,16 @@ function Signup() {
     }
   
     try {
-      const response = await axios.post(
-        `https://pet-adoption-yc64.onrender.com/api/user/login`,
+      const response = await axios.put(
+        `https://pet-adoption-yc64.onrender.com/api/user/resetPass`,
         formData,
       );
-      console.log(response.data);
-      const role = response.data.role;
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("userId", response.data.userId);
-
-      if(role === 'admin'){
-        navigate("/admin");
-      }else{
-        navigate('/')
-      }
-
+      navigate('/login');
     } catch (error) {
       setError(error.response?.data?.message || "Login failed.");
     }
   };
   
-
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -87,7 +75,7 @@ function Signup() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="New Password"
               type="password"
               autoComplete="new-password"
               onChange={handleChange}
@@ -101,21 +89,8 @@ function Signup() {
               size="large"
               sx={{ mt: 3, mb: 2, py: 1.5 }}
             >
-              Login
+              Reset
             </Button>
-            <Box sx={{ textAlign: 'center' }}>
-                <Link to="/reset" style={{ textDecoration: 'none' }}>
-                Forgot Password ?
-                </Link>
-            </Box>
-            <Box sx={{ textAlign: 'center' }}>
-              <Typography variant="body2" color="text.secondary">
-                Don't have an account?{' '}
-                <Link to="/signup" style={{ textDecoration: 'none' }}>
-                  Signup here
-                </Link>
-              </Typography>
-            </Box>
           </Box>
         </Paper>
       </Box>
@@ -123,4 +98,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default ResetPassword;

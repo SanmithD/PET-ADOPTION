@@ -240,5 +240,46 @@ const deleteUser = async(req, res) =>{
     }
 }
 
-export { deleteUser, getAllUser, getUserById, login, signup, updateUser };
+const resetPassword = async(req, res) =>{
+    const { email, password } = req.body;
+
+    if(!email || !password){
+        return res.status(400).json({
+            success: false,
+            message: "Enter Details"
+        });
+    };
+
+    try {
+        const user = await signupModel.findOne({ email });
+        if(!userId){
+            return res.status(400).json({
+                success: false,
+                message: "User does not exits"
+            });
+        };
+        const hashedNewPass = await bcrypt.hash(password, 10);
+        if(!hashedNewPass){
+            return res.status(400).json({
+                success: false,
+                message: "Failed to reset the password"
+            });
+        };
+        const changedPassword = await signupModel.findOneAndUpdate({ email },{
+            password: hashedNewPass
+        },{ new: true });
+        res.status(200).json({
+            success: true,
+            message: "Password Changed"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: true,
+            message: "Server error"
+        });
+        console.log(error);
+    }
+}
+
+export { deleteUser, getAllUser, getUserById, login, resetPassword, signup, updateUser };
 

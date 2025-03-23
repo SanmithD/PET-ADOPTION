@@ -4,18 +4,11 @@ import './App.css';
 import Footer from './Components/Footer';
 import Login from './Components/Login';
 import ProtectedRoute from './Components/ProtectedRoute';
+import ResetPassword from './Components/ResetPassword';
 import Signup from './Components/Signup';
 import User from './User/UserRoute/User';
 
 function App() {
-
-  // const navigate = useNavigate();
-  // const token = localStorage.getItem('token');
-
-  // if(!token){
-  //   navigate('/login');
-  // }
-
   return (
     <>
       <Routes>
@@ -23,6 +16,7 @@ function App() {
         <Route path='/admin/*' element={<ProtectedRoute><Admin/> </ProtectedRoute>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
+        <Route path='/reset' element={<ResetPassword/>}/>
       </Routes>
       <Footer/>
     </>
