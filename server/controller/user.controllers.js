@@ -252,7 +252,7 @@ const resetPassword = async(req, res) =>{
 
     try {
         const user = await signupModel.findOne({ email });
-        if(!userId){
+        if(!user){
             return res.status(400).json({
                 success: false,
                 message: "User does not exits"
@@ -274,7 +274,7 @@ const resetPassword = async(req, res) =>{
         });
     } catch (error) {
         res.status(500).json({
-            success: true,
+            success: false,
             message: "Server error"
         });
         console.log(error);
