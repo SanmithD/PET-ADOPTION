@@ -1,14 +1,14 @@
 import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  CircularProgress,
-  Container,
-  Grid,
-  TextField,
-  Typography
+    Box,
+    Button,
+    Card,
+    CardContent,
+    CardMedia,
+    CircularProgress,
+    Container,
+    Grid,
+    TextField,
+    Typography
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
   
     const getAllPetData = async () => {
       try {
-        const response = await axios.get(`https://pet-adoption-5.onrender.com/api/pet/getAllPet`);
+        const response = await axios.get(`https://pet-adoption-back.onrender.com/api/pet/getAllPet`);
         const data = Array.isArray(response.data.response) ? response.data.response : [];
         setPetData(data);
       } catch (error) {

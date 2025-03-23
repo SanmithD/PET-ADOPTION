@@ -1,14 +1,14 @@
 import {
-  Alert,
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  Divider,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
+    Alert,
+    Box,
+    Button,
+    CircularProgress,
+    Container,
+    Divider,
+    Paper,
+    Stack,
+    TextField,
+    Typography,
 } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
@@ -34,7 +34,7 @@ function Feedback() {
 
     try {
       const response = await axios.post(
-        `https://pet-adoption-5.onrender.com/api/feedback/postFeedback`,
+        `https://pet-adoption-back.onrender.com/api/feedback/postFeedback`,
         { feedback },
         {
           headers: {

@@ -1,13 +1,13 @@
 import {
-  Alert,
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
+    Alert,
+    Box,
+    Button,
+    CircularProgress,
+    Container,
+    Paper,
+    Stack,
+    TextField,
+    Typography,
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -45,7 +45,7 @@ function PostNotification() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://pet-adoption-5.onrender.com/api/notification/getByIdNotification/${id}`
+        `https://pet-adoption-back.onrender.com/api/notification/getByIdNotification/${id}`
       );
       const data = response.data?.response || {};
       setNotification({
@@ -77,7 +77,7 @@ function PostNotification() {
     setLoading(true);
     try {
       await axios.put(
-        `https://pet-adoption-5.onrender.com/api/notification/updateNotification/${id}`,
+        `https://pet-adoption-back.onrender.com/api/notification/updateNotification/${id}`,
         notification
       );
       setSuccess('Notification updated successfully');
@@ -98,7 +98,7 @@ function PostNotification() {
     }
     setLoading(true);
     try {
-      await axios.post(`https://pet-adoption-5.onrender.com/api/notification/postNotification`, notification);
+      await axios.post(`https://pet-adoption-back.onrender.com/api/notification/postNotification`, notification);
       setSuccess('Notification published successfully');
       setNotification({ title: '', message: '' });
     } catch (error) {

@@ -1,17 +1,17 @@
 import { Delete, Edit, PostAddOutlined } from '@mui/icons-material';
 import {
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  IconButton,
-  List,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-  Paper,
-  Stack,
-  Typography,
+    Box,
+    Button,
+    CircularProgress,
+    Container,
+    IconButton,
+    List,
+    ListItem,
+    ListItemSecondaryAction,
+    ListItemText,
+    Paper,
+    Stack,
+    Typography,
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -25,7 +25,7 @@ function ManageNotifications() {
   const getAllNoti = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`https://pet-adoption-5.onrender.com/api/notification/getAllNotification`);
+      const response = await axios.get(`https://pet-adoption-back.onrender.com/api/notification/getAllNotification`);
       setAllNotification(response.data.response || []);
     } catch (error) {
       console.log(error);
@@ -36,7 +36,7 @@ function ManageNotifications() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://pet-adoption-5.onrender.com/api/notification/deleteByIdNotification/${id}`);
+      await axios.delete(`https://pet-adoption-back.onrender.com/api/notification/deleteByIdNotification/${id}`);
       getAllNoti();
     } catch (error) {
       console.log(error);
@@ -45,7 +45,7 @@ function ManageNotifications() {
 
   const handleDeleteAll = async () => {
     try {
-      await axios.delete(`https://pet-adoption-5.onrender.com/api/notification/deleteAllNotification`);
+      await axios.delete(`https://pet-adoption-back.onrender.com/api/notification/deleteAllNotification`);
       getAllNoti();
     } catch (error) {
       console.log(error);

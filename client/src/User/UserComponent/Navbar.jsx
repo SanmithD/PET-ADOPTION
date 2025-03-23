@@ -7,17 +7,17 @@ import MoreIcon from '@mui/icons-material/More';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {
-  AppBar,
-  Badge,
-  Box,
-  Button,
-  IconButton,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Typography,
+    AppBar,
+    Badge,
+    Box,
+    Button,
+    IconButton,
+    ListItemIcon,
+    ListItemText,
+    Menu,
+    MenuItem,
+    Toolbar,
+    Typography,
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -50,8 +50,8 @@ export default function Navbar() {
         const userId = localStorage.getItem('userId'); 
         
         const [publicNoti, personalNoti] = await Promise.all([
-          axios.get(`https://pet-adoption-5.onrender.com/api/notification/getAllNotification`),
-          axios.get(`https://pet-adoption-5.onrender.com/api/notification/getOwnNotification`, {
+          axios.get(`https://pet-adoption-back.onrender.com/api/notification/getAllNotification`),
+          axios.get(`https://pet-adoption-back.onrender.com/api/notification/getOwnNotification`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`
             }

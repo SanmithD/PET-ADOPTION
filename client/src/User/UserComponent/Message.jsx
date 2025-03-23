@@ -1,15 +1,15 @@
 import {
-  Alert,
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  FormControl,
-  InputLabel,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
+    Alert,
+    Box,
+    Button,
+    CircularProgress,
+    Container,
+    FormControl,
+    InputLabel,
+    Paper,
+    Stack,
+    TextField,
+    Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
@@ -73,7 +73,7 @@ function Message() {
 
     try {
       const response = await axios.post(
-        `https://pet-adoption-5.onrender.com/api/contact/postMessage`,
+        `https://pet-adoption-back.onrender.com/api/contact/postMessage`,
         formData,
         {
           headers: {
@@ -96,7 +96,7 @@ function Message() {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`https://pet-adoption-5.onrender.com/api/contact/getOwnMsg`,{
+      const response = await axios.get(`https://pet-adoption-back.onrender.com/api/contact/getOwnMsg`,{
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

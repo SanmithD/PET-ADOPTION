@@ -1,17 +1,17 @@
 import {
-  Alert,
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
+    Alert,
+    Box,
+    Button,
+    CircularProgress,
+    Container,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Paper,
+    Stack,
+    TextField,
+    Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
@@ -46,7 +46,7 @@ import React, { useEffect, useState } from 'react';
     const getAllPets = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://pet-adoption-5.onrender.com/api/pet/getAllPet`);
+        const response = await axios.get(`https://pet-adoption-back.onrender.com/api/pet/getAllPet`);
         setPetsData(response.data.response || []);
         setError(null);
       } catch (err) {
@@ -77,7 +77,7 @@ import React, { useEffect, useState } from 'react';
       }
   
       try {
-        await axios.post(`https://pet-adoption-5.onrender.com/api/pet/postPet`, formData, {
+        await axios.post(`https://pet-adoption-back.onrender.com/api/pet/postPet`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -116,7 +116,7 @@ import React, { useEffect, useState } from 'react';
     //   }
   
       try {
-        await axios.put(`https://pet-adoption-5.onrender.com/api/pet/updatePet/${editPet._id}`, formData, {
+        await axios.put(`https://pet-adoption-back.onrender.com/api/pet/updatePet/${editPet._id}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -137,7 +137,7 @@ import React, { useEffect, useState } from 'react';
       setError(null);
   
       try {
-        await axios.delete(`https://pet-adoption-5.onrender.com/api/pet/deletePet/${id}`, {
+        await axios.delete(`https://pet-adoption-back.onrender.com/api/pet/deletePet/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

@@ -12,7 +12,7 @@ function PetDetails() {
 
   const getPetData = async () => {
     try {
-      const response = await axios.get(`https://pet-adoption-5.onrender.com/api/pet/getPetById/${id}`);
+      const response = await axios.get(`https://pet-adoption-back.onrender.com/api/pet/getPetById/${id}`);
       const data = response.data.response ? response.data.response : null;
       setPetInfo(data);
       setLoading(false);
