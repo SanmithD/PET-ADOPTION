@@ -1,10 +1,10 @@
 import { Alert, Button, CssBaseline, Paper, TextField, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function Signup() {
+function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -101,7 +101,7 @@ function Signup() {
 
             <Box sx={{ textAlign: 'center' }}>
               <Typography variant="body2" color="text.secondary">
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link to="/signup" style={{ textDecoration: 'none' }}>
                   Signup here
                 </Link>
@@ -114,4 +114,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;

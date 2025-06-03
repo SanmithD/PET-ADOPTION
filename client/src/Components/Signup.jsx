@@ -1,7 +1,7 @@
 import { Alert, Button, CssBaseline, Paper, TextField, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
@@ -39,13 +39,13 @@ function Signup() {
   
     try {
       const response = await axios.post(
-        `${VITE_API_BASE_URL}/api/user/signup`, // Added `/api` prefix
+        `${VITE_API_BASE_URL}/api/user/signup`, 
         newForm,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-          withCredentials: true, // Ensure cookies are sent
+          withCredentials: true, 
         }
       );
   
@@ -74,7 +74,7 @@ function Signup() {
             Create Account
           </Typography>
 
-          <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSignup} sx={{ mt: 1 }}>
             {error && (
               <Alert severity="error" sx={{ width: '100%', mb: 2 }}>
                 {error}
