@@ -20,7 +20,11 @@ app.use(cors({
   }));
   
 app.use(bodyParser.json());
-const PORT = process.env.PORT || 7000
+const PORT = process.env.PORT || 7000;
+
+app.get('/',(req,res) =>{
+  res.send("Hello world")
+});
 
 app.use('/api/user', userRouter);
 app.use('/api/feedback', feedbackRouter );
