@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function ManageRequest() {
   const [requests, setRequests] = useState([]);
@@ -35,7 +35,7 @@ function ManageRequest() {
 
   const handleReject = async(id) => {
     try {
-      const response = await axios.delete(`${VITE_API_BASE_URL}/adoption/rejectRequest/${id}`);
+      await axios.delete(`${VITE_API_BASE_URL}/adoption/rejectRequest/${id}`);
       allAdoptionRequest();
     } catch (error) {
       console.log(error);

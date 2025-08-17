@@ -1,6 +1,5 @@
 import { Email, Facebook, Instagram, LocationOn, Pets, Phone, Twitter } from '@mui/icons-material';
 import { Box, Container, Divider, Grid, IconButton, Link, Typography } from '@mui/material';
-import React from 'react';
 
 function Footer() {
   return (

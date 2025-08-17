@@ -1,4 +1,3 @@
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Adopt from '../UserComponent/Adopt';
 import Blog from '../UserComponent/Blog';

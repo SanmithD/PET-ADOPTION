@@ -38,8 +38,8 @@ function Signup() {
     newForm.append("password", formData.password);
   
     try {
-      const response = await axios.post(
-        `https://pet-adoption-yc64.onrender.com/api/user/signup`, 
+      await axios.post(
+        `${VITE_API_BASE_URL}/user/signup`, 
         newForm,
         {
           headers: {

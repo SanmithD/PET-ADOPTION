@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
@@ -69,11 +69,11 @@ function Message() {
     const formData = new FormData();
     formData.append('message', contactForm.message);
     if (contactForm.contactImage) {
-      formData.append('contactImage', contactImage);
+      formData.append('contactImage', contactForm.contactImage);
     }
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `${VITE_API_BASE_URL}/contact/postMessage`,
         formData,
         {

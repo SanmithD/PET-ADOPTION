@@ -1,6 +1,6 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const CounterBox = styled(Box)(({ theme }) => ({
   textAlign: 'center',

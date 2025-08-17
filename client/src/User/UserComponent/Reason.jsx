@@ -1,5 +1,4 @@
 import { Box, Container, Typography } from '@mui/material';
-import React from 'react';
 import reason from '../../assets/sadDog.png';
 
 function Reason() {

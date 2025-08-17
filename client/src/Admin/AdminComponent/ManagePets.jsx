@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
   
   const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(3),

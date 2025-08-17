@@ -1,14 +1,13 @@
 import {
-    Box,
-    Container,
-    Divider,
-    Grid,
-    Paper,
-    Stack,
-    Typography,
+  Box,
+  Container,
+  Divider,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import React from 'react';
   
   const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(4),

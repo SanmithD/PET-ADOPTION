@@ -1,4 +1,3 @@
-import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Profile from '../../User/UserComponent/Profile'
 import Contact from '../AdminComponent/Contact'

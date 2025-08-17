@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import axios from 'axios';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function Feedback() {
   const [feedback, setFeedback] = useState('');
@@ -34,7 +34,7 @@ function Feedback() {
     setAlert({ open: false, message: '', severity: 'success' });
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `${VITE_API_BASE_URL}/feedback/postFeedback`,
         { feedback },
         {

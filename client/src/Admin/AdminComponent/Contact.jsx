@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
@@ -24,20 +24,20 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   },
 }));
 
-const ReplyItem = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(2),
-  marginTop: theme.spacing(1),
-  marginBottom: theme.spacing(1),
-  backgroundColor: theme.palette.grey[50],
-  width: '100%',
-}));
+// const ReplyItem = styled(Paper)(({ theme }) => ({
+//   padding: theme.spacing(2),
+//   marginTop: theme.spacing(1),
+//   marginBottom: theme.spacing(1),
+//   backgroundColor: theme.palette.grey[50],
+//   width: '100%',
+// }));
 
 const Contact = () => {
   const [allMessages, setAllMessages] = useState([]);
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [reply, setReply] = useState('');
+  // const [reply, setReply] = useState('');
   const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
@@ -71,27 +71,27 @@ const Contact = () => {
     }
   };
 
-  const handleReply = async (e) => {
-    e.preventDefault();
-    if (!reply.trim() || !selectedMessage) return;
-    try {
-      setLoading(true);
-      const token = localStorage.getItem('token');
-      if (!token) throw new Error('You must be logged in to reply');
-      const response = await axios.post(
-        `${VITE_API_BASE_URL}/contact/messages/${selectedMessage._id}/replies`,
-        { message: reply },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setSelectedMessage(response.data.data);
-      setReply('');
-    } catch (err) {
-      setError('Failed to send reply');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const handleReply = async (e) => {
+  //   e.preventDefault();
+  //   if (!reply.trim() || !selectedMessage) return;
+  //   try {
+  //     setLoading(true);
+  //     const token = localStorage.getItem('token');
+  //     if (!token) throw new Error('You must be logged in to reply');
+  //     const response = await axios.post(
+  //       `${VITE_API_BASE_URL}/contact/messages/${selectedMessage._id}/replies`,
+  //       { message: reply },
+  //       { headers: { Authorization: `Bearer ${token}` } }
+  //     );
+  //     setSelectedMessage(response.data.data);
+  //     setReply('');
+  //   } catch (err) {
+  //     setError('Failed to send reply');
+  //     console.error(err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleDelete = async (id) => {
     try {

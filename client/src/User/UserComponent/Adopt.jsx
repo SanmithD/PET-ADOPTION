@@ -1,6 +1,6 @@
 import { Alert, Box, Button, Container, Paper, Stack, TextField, Typography } from '@mui/material';
 import axios from 'axios';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function Adopt() {
     const [petForm, setPetForm] = useState({
@@ -34,7 +34,7 @@ function Adopt() {
     const handleRequest = async(e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${VITE_API_BASE_URL}/adoption/makeRequest`, petForm,{
+            await axios.post(`${VITE_API_BASE_URL}/adoption/makeRequest`, petForm,{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
