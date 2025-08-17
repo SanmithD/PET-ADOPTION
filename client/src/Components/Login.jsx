@@ -28,7 +28,7 @@ function Login() {
   
     try {
       const response = await axios.post(
-        `${VITE_API_BASE_URL}/user/login`,
+        `${VITE_API_BASE_URL}/api/user/login`,
         formData,
         { withCredentials: true } 
       );

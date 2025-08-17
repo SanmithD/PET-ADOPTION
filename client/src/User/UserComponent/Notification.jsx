@@ -36,7 +36,7 @@ function Notification() {
 
       setLoading(true);
       const response = await axios.get(
-        `${VITE_API_BASE_URL}/notification/getByIdNotification/${id}`
+        `${VITE_API_BASE_URL}/api/notification/getByIdNotification/${id}`
       );
       setNotification(response.data.response);
       setError(null);

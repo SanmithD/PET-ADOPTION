@@ -34,7 +34,7 @@ function Adopt() {
     const handleRequest = async(e) => {
         e.preventDefault();
         try {
-            await axios.post(`${VITE_API_BASE_URL}/adoption/makeRequest`, petForm,{
+            await axios.post(`${VITE_API_BASE_URL}/api/adoption/makeRequest`, petForm,{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

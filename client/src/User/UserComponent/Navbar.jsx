@@ -49,7 +49,7 @@ export default function Navbar() {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get(`${VITE_API_BASE_URL}/notification/getAllNotification`);
+        const response = await axios.get(`${VITE_API_BASE_URL}/api/notification/getAllNotification`);
         const data = response.data.response || [];
         setNotifications(data);
         setNotiLength(data.length);

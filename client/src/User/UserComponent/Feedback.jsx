@@ -35,7 +35,7 @@ function Feedback() {
 
     try {
       await axios.post(
-        `${VITE_API_BASE_URL}/feedback/postFeedback`,
+        `${VITE_API_BASE_URL}/api/feedback/postFeedback`,
         { feedback },
         {
           headers: {

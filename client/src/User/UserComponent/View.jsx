@@ -23,7 +23,7 @@ import { useNavigate } from 'react-router-dom';
   
     const getAllPetData = async () => {
       try {
-        const response = await axios.get(`${VITE_API_BASE_URL}/pet/getAllPet`);
+        const response = await axios.get(`${VITE_API_BASE_URL}/api/pet/getAllPet`);
         const data = Array.isArray(response.data.response) ? response.data.response : [];
         setPetData(data);
       } catch (error) {

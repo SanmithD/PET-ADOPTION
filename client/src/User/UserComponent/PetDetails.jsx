@@ -13,7 +13,7 @@ function PetDetails() {
 
   const getPetData = async () => {
     try {
-      const response = await axios.get(`${VITE_API_BASE_URL}/pet/getPetById/${id}`);
+      const response = await axios.get(`${VITE_API_BASE_URL}/api/pet/getPetById/${id}`);
       const data = response.data.response ? response.data.response : null;
       setPetInfo(data);
       setLoading(false);

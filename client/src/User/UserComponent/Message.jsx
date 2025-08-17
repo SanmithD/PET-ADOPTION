@@ -74,7 +74,7 @@ function Message() {
 
     try {
       await axios.post(
-        `${VITE_API_BASE_URL}/contact/postMessage`,
+        `${VITE_API_BASE_URL}/api/contact/postMessage`,
         formData,
         {
           headers: {
@@ -97,7 +97,7 @@ function Message() {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${VITE_API_BASE_URL}/contact/getOwnMsg`,{
+      const response = await axios.get(`${VITE_API_BASE_URL}/api/contact/getOwnMsg`,{
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

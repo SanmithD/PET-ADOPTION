@@ -44,7 +44,7 @@ const Contact = () => {
     const getAllMessages = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${VITE_API_BASE_URL}/contact/getAllMsg`);
+        const response = await axios.get(`https://pet-adoption-1-o4si.onrender.com/api/contact/getAllMsg`);
         setAllMessages(response.data.data || []);
         setError(null);
       } catch (err) {
@@ -60,7 +60,7 @@ const Contact = () => {
   const getSingleMessage = async (messageId) => {
     try {
       setLoading(true);
-      const response = await axios.get(`${VITE_API_BASE_URL}/contact/messages/${messageId}/replies`);
+      const response = await axios.get(`https://pet-adoption-1-o4si.onrender.com/api/contact/messages/${messageId}/replies`);
       setSelectedMessage(response.data.data);
       setError(null);
     } catch (err) {
@@ -79,7 +79,7 @@ const Contact = () => {
   //     const token = localStorage.getItem('token');
   //     if (!token) throw new Error('You must be logged in to reply');
   //     const response = await axios.post(
-  //       `${VITE_API_BASE_URL}/contact/messages/${selectedMessage._id}/replies`,
+  //       `https://pet-adoption-1-o4si.onrender.com/api/contact/messages/${selectedMessage._id}/replies`,
   //       { message: reply },
   //       { headers: { Authorization: `Bearer ${token}` } }
   //     );
@@ -96,7 +96,7 @@ const Contact = () => {
   const handleDelete = async (id) => {
     try {
       setLoading(true);
-      await axios.delete(`${VITE_API_BASE_URL}/contact/deleteMsg/${id}`);
+      await axios.delete(`https://pet-adoption-1-o4si.onrender.com/api/contact/deleteMsg/${id}`);
       setAllMessages(allMessages.filter((msg) => msg._id !== id));
       if (selectedMessage?._id === id) setSelectedMessage(null);
     } catch (err) {

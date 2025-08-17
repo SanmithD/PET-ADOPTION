@@ -20,7 +20,7 @@ function ManageRequest() {
 
   const allAdoptionRequest = async () => {
     try {
-      const response = await axios.get(`${VITE_API_BASE_URL}/adoption/getAllRequest`);
+      const response = await axios.get(`${VITE_API_BASE_URL}/api/adoption/getAllRequest`);
       setRequests(response.data.response || []);
     } catch (error) {
       console.log(error);
@@ -35,7 +35,7 @@ function ManageRequest() {
 
   const handleReject = async(id) => {
     try {
-      await axios.delete(`${VITE_API_BASE_URL}/adoption/rejectRequest/${id}`);
+      await axios.delete(`${VITE_API_BASE_URL}/api/adoption/rejectRequest/${id}`);
       allAdoptionRequest();
     } catch (error) {
       console.log(error);

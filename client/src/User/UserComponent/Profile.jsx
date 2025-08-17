@@ -36,7 +36,7 @@ function Profile() {
   const userProfile = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${VITE_API_BASE_URL}/user/getUserById`, {
+      const response = await axios.get(`${VITE_API_BASE_URL}/api/user/getUserById`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setData(response.data.user || {});
@@ -73,7 +73,7 @@ function Profile() {
       formData.append('email', data.email);
       if (selectedImage) formData.append('profileImage', selectedImage);
 
-      await axios.put(`${VITE_API_BASE_URL}/user/updateUser`, formData, {
+      await axios.put(`${VITE_API_BASE_URL}/api/user/updateUser`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
@@ -96,7 +96,7 @@ function Profile() {
     try {
       setLoading(true);
       setError(null);
-      await axios.delete(`${VITE_API_BASE_URL}/user/deleteUser`, {
+      await axios.delete(`${VITE_API_BASE_URL}/api/user/deleteUser`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       localStorage.removeItem('token');
