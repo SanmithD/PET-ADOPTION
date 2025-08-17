@@ -39,7 +39,7 @@ function Signup() {
   
     try {
       await axios.post(
-        `${VITE_API_BASE_URL}/user/signup`, 
+        `${VITE_API_BASE_URL}/api/user/signup`, 
         newForm,
         {
           headers: {
