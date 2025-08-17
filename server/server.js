@@ -15,7 +15,7 @@ connectDB();
 const app = express();
 app.use(cors({
     origin: ["https://pet-adoption-front.vercel.app"],
-    methods: "GET,POST,PUT,DELETE",
+    methods: ["GET","POST","PUT","DELETE","OPTION","PATCH"],
     credentials: true
   }));
   
