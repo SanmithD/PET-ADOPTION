@@ -14,7 +14,7 @@ import userRouter from './routes/user.route.js';
 connectDB();
 const app = express();
 app.use(cors({
-    origin: ["https://pet-adoption-front.vercel.app/"],
+    origin: ["https://pet-adoption-front.vercel.app"],
     methods: "GET,POST,PUT,DELETE",
     credentials: true
   }));
